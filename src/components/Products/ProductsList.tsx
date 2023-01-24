@@ -12,24 +12,16 @@ type Props = {
     totalPrice: number;
     currency: string;
   };
-  changeEur: () => void;
-  changeUsd: () => void;
 };
 
-const ProductsList = ({
-  addProductToCart,
-  cartData,
-  changeEur,
-  changeUsd,
-}: Props) => {
+const ProductsList = ({ addProductToCart, cartData }: Props) => {
   return (
     <>
       <h2>Our shop page</h2>
-      <button onClick={() => changeUsd()}>USD</button>
-      <button onClick={() => changeEur()}>EUR</button>
+      <button>USD</button>
+      <button>EUR</button>
       <button>UAH</button>
       <button>ZL</button>
-
       <div className="container">
         {productsArray.map(({ title, desc, price }: Products) => (
           <Product

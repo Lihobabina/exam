@@ -19,28 +19,11 @@ const App = (props: Props) => {
       currency: "UAH",
     }));
   };
-  const changeEur = () => {
-    setCartData((prevState: CartData) => ({
-      totalPrice: prevState.totalPrice * 0.025,
-      currency: "EUR",
-    }));
-  };
-  const changeUsd = () => {
-    setCartData((prevState: CartData) => ({
-      totalPrice: prevState.totalPrice * 0.027,
-      currency: "USD",
-    }));
-  };
 
   return (
     <>
       <ButtonsList />
-      <ProductsList
-        cartData={cartData}
-        addProductToCart={addProductToCart}
-        changeEur={changeEur}
-        changeUsd={changeUsd}
-      />
+      <ProductsList cartData={cartData} addProductToCart={addProductToCart} />
     </>
   );
 };
