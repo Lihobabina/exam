@@ -1,16 +1,19 @@
 import "./ProductsList.css";
-
+import { currencyArr } from "./ProductsList";
 type Props = {
   title: string;
   desc: string;
   price: number;
   addProductToCart: (price: number) => void;
-  cartData: {
-    totalPrice: number;
-    currency: string;
-  };
+  currencyK: number;
 };
-const Product = ({ title, desc, price, addProductToCart, cartData }: Props) => {
+const Product = ({
+  title,
+  desc,
+  price,
+  addProductToCart,
+  currencyK,
+}: Props) => {
   return (
     <>
       {" "}
@@ -18,7 +21,9 @@ const Product = ({ title, desc, price, addProductToCart, cartData }: Props) => {
         <h4>{title}</h4>
         <p>{desc}</p>
         <h5>
-          {price} {cartData.currency}
+          {`${price * currencyArr[currencyK].k} ${
+            currencyArr[currencyK].currency
+          }`}
         </h5>
         <button onClick={() => addProductToCart(price)}>buy</button>
       </div>

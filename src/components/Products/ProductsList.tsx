@@ -1,27 +1,41 @@
-import Product from "./Product";
 import productsArray from "../../utils/productsArray";
+import Product from "./Product";
 import "./ProductsList.css";
 type Products = {
+  id: number;
   title: string;
   desc: string;
   price: number;
+  currency: string;
 };
 type Props = {
   addProductToCart: (price: number) => void;
   cartData: {
     totalPrice: number;
-    currency: string;
   };
+  currencyK: number;
 };
-
-const ProductsList = ({ addProductToCart, cartData }: Props) => {
+export const currencyArr = [
+  {
+    currency: "USD",
+    k: 1,
+  },
+  {
+    currency: "EUR",
+    k: 0.93,
+  },
+  {
+    currency: "UAH",
+    k: 40,
+  },
+  {
+    currency: "ZL",
+    k: 4.4,
+  },
+];
+const ProductsList = ({ addProductToCart, cartData, currencyK }: Props) => {
   return (
     <>
-      <h2>Our shop page</h2>
-      <button>USD</button>
-      <button>EUR</button>
-      <button>UAH</button>
-      <button>ZL</button>
       <div className="container">
         {productsArray.map(({ title, desc, price }: Products) => (
           <Product
@@ -29,12 +43,13 @@ const ProductsList = ({ addProductToCart, cartData }: Props) => {
             desc={desc}
             price={price}
             addProductToCart={addProductToCart}
-            cartData={cartData}
+            currencyK={currencyK}
           />
         ))}
       </div>
       <h2>
-        Total {cartData.totalPrice} {cartData.currency}{" "}
+        Total {cartData.totalPrice * currencyArr[currencyK].k}{" "}
+        {currencyArr[currencyK].currency}
       </h2>
     </>
   );
